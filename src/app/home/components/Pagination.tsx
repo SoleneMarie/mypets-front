@@ -35,6 +35,7 @@ export default function Pagination({
           value={limit}
           onChange={(value) => {
             setLimit(Number(value));
+            onPageChange(1);
           }}
           options={paginationOptions}
           width="w-14 sm:w-16"

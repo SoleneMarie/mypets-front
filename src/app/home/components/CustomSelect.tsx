@@ -43,7 +43,7 @@ export default function CustomSelect({
             <ChevronDown className="w-4 h-4" />
           </Listbox.Button>
 
-          <Listbox.Options className="hide-scrollbar text-[var(--foreground)] font-medium absolute mt-2 max-h-30 w-full overflow-auto rounded-xl bg-[var(--background)] py-1 shadow-lg border border-gray-200 z-10">
+          <Listbox.Options className="text-[var(--foreground)] font-medium absolute mt-2 max-h-30 w-full overflow-auto rounded-xl bg-[var(--background)] py-1 shadow-lg border border-gray-200 z-10">
             {options.map((option) => (
               <Listbox.Option
                 key={option.value}
