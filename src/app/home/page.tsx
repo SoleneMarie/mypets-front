@@ -11,7 +11,7 @@ export default function Home() {
   >("persons");
 
   return (
-    <main className="px-4 min-h-screen max-w-[1000px] w-full flex flex-col justify-between mx-auto bg-[var(--background)] text-[var(--foreground)]">
+    <main className="px-4 min-h-screen max-w-[1100px] w-full flex flex-col justify-between mx-auto bg-[var(--background)] text-[var(--foreground)]">
       <Header selectedView={selectedView} setSelectedView={setSelectedView} />
       <HomeContent selectedView={selectedView} />
       <Footer />

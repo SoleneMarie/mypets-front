@@ -1,17 +1,21 @@
-"use client";
-import { useState, useEffect } from "react";
-import Loader from "../../../../components/ui/loader";
+import PersonsView from "./PersonsView";
+import AnimalsView from "./AnimalsView";
 
 type HomeContentProps = {
   selectedView: "persons" | "animals" | "quizz";
 };
-
-export default function HomeContent(selectedView: HomeContentProps) {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-
-  if (isLoading) {
-    return <Loader />;
+export default function HomeContent({ selectedView }: HomeContentProps) {
+  if (selectedView === "persons") {
+    return <PersonsView />;
   }
 
-  return <div className="flex-1"></div>;
+  if (selectedView === "animals") {
+    return <AnimalsView />;
+  }
+
+  if (selectedView === "quizz") {
+    return <div>À venir : quizz interactif 🎲</div>;
+  }
+
+  return null;
 }
