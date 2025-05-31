@@ -1,3 +1,9 @@
+/**
+ * Composant Header
+ * Affiche l'en-tête de l'application avec le logo, des boutons de navigation,
+ * et un bouton de retour si on est sur une page "partielle".
+ */
+
 "use client";
 
 import { useRouter } from "next/navigation";
@@ -6,8 +12,8 @@ import MainLogo from "./mainLogo";
 import { User, Rabbit, HelpCircle, ArrowLeft } from "lucide-react";
 
 type HeaderProps = {
-  selectedView: "persons" | "animals" | "quizz";
-  setSelectedView: (view: "persons" | "animals" | "quizz") => void;
+  selectedView?: "persons" | "animals" | "quizz";
+  setSelectedView?: (view: "persons" | "animals" | "quizz") => void;
   partial?: boolean;
 };
 
@@ -31,7 +37,7 @@ export default function Header({
           />
         </div>
       )}
-      {!partial && (
+      {!partial && selectedView && setSelectedView && (
         <div className="flex justify-between max-w-100 gap-3">
           <Button
             type="header"

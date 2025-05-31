@@ -1,3 +1,9 @@
+/**
+ * Composant MainLogo
+ * Affiche le logo principal de l'application "My Pets" avec une icône de patte
+ * Lien vers la page d'accueil
+ */
+
 import { PawPrint } from "lucide-react";
 import Link from "next/link";
 

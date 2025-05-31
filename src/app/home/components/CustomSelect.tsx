@@ -1,3 +1,17 @@
+/**
+ * Composant CustomSelect
+ *
+ * Un menu déroulant personnalisable basé sur HeadlessUI.
+ * Il permet de sélectionner une valeur parmi une liste d'options typées.
+ *
+ * Props :
+ * - label : texte affiché à gauche du select
+ * - value : valeur actuellement sélectionnée
+ * - onChange : callback appelée quand l'utilisateur change de valeur
+ * - options : tableau d'options { label, value }
+ * - width : classe tailwind pour la largeur (ex : 'w-22')
+ */
+
 "use client";
 
 import { Listbox } from "@headlessui/react";
@@ -36,7 +50,10 @@ export default function CustomSelect({
       </label>
       <Listbox value={value} onChange={onChange}>
         <div className={`relative ${width}`}>
-          <Listbox.Button className="bg-[var(--background)] text-[var(--foreground)] w-full cursor-pointer rounded-xl py-1 px-3 text-center shadow-lg font-semibold flex items-center justify-between text-sm">
+          <Listbox.Button
+            id="specie"
+            className="bg-[var(--background)] text-[var(--foreground)] w-full cursor-pointer rounded-xl py-1 px-3 text-center shadow-lg font-semibold flex items-center justify-between text-sm"
+          >
             <span className="w-full truncate text-center">
               {selected.label}
             </span>

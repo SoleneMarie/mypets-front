@@ -1,3 +1,9 @@
+/**
+ * Composant Button
+ * Affiche un bouton stylisé avec deux variantes : "header" ou "large".
+ * Peut contenir une icône et indiquer s'il est sélectionné.
+ */
+
 import { cn } from "@/lib/utils";
 
 type ButtonProps = {

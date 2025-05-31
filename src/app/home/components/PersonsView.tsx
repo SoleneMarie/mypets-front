@@ -1,3 +1,9 @@
+/**
+ * Composant PersonsView
+ * Affiche une liste paginée de personnes avec un avatar aléatoire.
+ * Les données sont récupérées via GraphQL.
+ */
+
 "use client";
 import { useEffect, useState } from "react";
 import { graphQLClient } from "@/lib/graphql/client";
@@ -22,6 +28,7 @@ export default function PersonsView() {
   const [limit, setLimit] = useState(20);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalCount, setTotalCount] = useState(0);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchPersons() {
@@ -34,11 +41,15 @@ export default function PersonsView() {
           };
         }>(GET_ALL_PERSONS, { start, limit });
 
+        if (data.paginatedPersons.persons.length === 0) {
+          setError("Il n'y a aucun maître à afficher");
+        }
         setPersons(data.paginatedPersons.persons);
         setAvatars(assignRandomAvatars(data.paginatedPersons.persons.length));
         setTotalCount(data.paginatedPersons.totalCount);
       } catch (error) {
         console.error("Erreur lors du chargement des personnes", error);
+        setError("Impossible de charger les maîtres. Veuillez réessayer.");
       } finally {
         setIsLoading(false);
       }
@@ -48,6 +59,12 @@ export default function PersonsView() {
   }, [currentPage, limit]);
 
   if (isLoading) return <Loader />;
+  if (error)
+    return (
+      <div className="text-[var(--danger)] p-4 text-sm sm:text-normal text-center">
+        {error}
+      </div>
+    );
 
   return (
     <div className="w-full flex-1">
@@ -75,6 +92,9 @@ export default function PersonsView() {
             firstName={person.firstName}
             lastName={person.lastName}
             avatar={avatars[index]}
+            path={`/person/${person.id}?avatar=${encodeURIComponent(
+              avatars[index]
+            )}`}
           />
         ))}
       </div>

@@ -1,3 +1,9 @@
+/**
+ * Composant AnimalsView
+ * Affiche une liste paginée d'animaux avec possibilité de filtrer par espèce.
+ * Utilise GraphQL pour récupérer les données côté client.
+ */
+
 "use client";
 import { useEffect, useState } from "react";
 import { graphQLClient } from "@/lib/graphql/client";
@@ -32,11 +38,11 @@ export default function AnimalsView() {
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredSpecie, setFilteredSpecie] = useState("");
   const [totalCount, setTotalCount] = useState(0);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchAnimals() {
       try {
-        console.log("espèce:", filteredSpecie);
         const start = (currentPage - 1) * limit;
         const data = await graphQLClient.request<{
           paginatedAnimals: {
@@ -45,11 +51,14 @@ export default function AnimalsView() {
           };
         }>(GET_ALL_ANIMALS, { start, limit, species: filteredSpecie });
 
-        console.log(data.paginatedAnimals.animals);
+        if (data.paginatedAnimals.animals.length === 0) {
+          setError("Il n'y a aucun animal à afficher");
+        }
         setAnimals(data.paginatedAnimals.animals);
         setTotalCount(data.paginatedAnimals.totalCount);
       } catch (error) {
         console.error("Erreur lors du chargement des animaux", error);
+        setError("Impossible de charger les animaux. Veuillez réessayer.");
       } finally {
         setIsLoading(false);
       }
@@ -59,6 +68,12 @@ export default function AnimalsView() {
   }, [currentPage, limit, filteredSpecie]);
 
   if (isLoading) return <Loader />;
+  if (error)
+    return (
+      <div className="text-[var(--danger)] p-4 text-sm sm:text-normal text-center">
+        {error}
+      </div>
+    );
 
   return (
     <div className="w-full flex-1">
@@ -99,6 +114,7 @@ export default function AnimalsView() {
             firstName={animal.name}
             lastName=""
             avatar={getSpeciePhoto(animal.species)}
+            path={`/animal/${animal.id}`}
           />
         ))}
       </div>

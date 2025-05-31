@@ -1,3 +1,19 @@
+/**
+ * Composant Pagination
+ *
+ * Affiche une pagination avec :
+ * - des boutons "Précédent" et "Suivant"
+ * - des pages numérotées avec ellipses automatiques
+ * - un sélecteur du nombre de résultats par page
+ *
+ * Props :
+ * - currentPage : page actuellement sélectionnée
+ * - totalPages : nombre total de pages
+ * - onPageChange : callback déclenchée lors d’un changement de page
+ * - limit : nombre d’éléments par page
+ * - setLimit : fonction pour changer la valeur de `limit`
+ */
+
 import { getPaginationRange } from "@/lib/utils";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import CustomSelect from "./CustomSelect";

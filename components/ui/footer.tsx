@@ -1,3 +1,7 @@
+/**
+ * Composant Footer
+ */
+
 "use client";
 
 export default function Footer() {

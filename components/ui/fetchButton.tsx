@@ -1,3 +1,9 @@
+/**
+ * Composant FetchButton
+ * Bouton stylisé en forme de patte avec le texte "Fetch!".
+ * Sert à naviguer vers /home.
+ */
+
 import { PawPrint } from "lucide-react";
 
 export default function FetchButton({ onClick }: { onClick?: () => void }) {

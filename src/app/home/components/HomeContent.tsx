@@ -1,5 +1,6 @@
 import PersonsView from "./PersonsView";
 import AnimalsView from "./AnimalsView";
+import QuizzView from "./QuizzView";
 
 type HomeContentProps = {
   selectedView: "persons" | "animals" | "quizz";
@@ -14,7 +15,7 @@ export default function HomeContent({ selectedView }: HomeContentProps) {
   }
 
   if (selectedView === "quizz") {
-    return <div>À venir : quizz interactif 🎲</div>;
+    return <QuizzView />;
   }
 
   return null;

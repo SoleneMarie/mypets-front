@@ -1,4 +1,11 @@
+/**
+ * Composant OneSmallCard
+ * Affiche une carte cliquable représentant une personne ou un animal,
+ * avec un avatar et un nom. Redirige vers la page de détails correspondante.
+ */
+
 "use client";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 
 type OneCardProps = {
@@ -6,6 +13,7 @@ type OneCardProps = {
   firstName: string;
   lastName: string;
   avatar: string;
+  path: string;
 };
 
 export default function OneSmallCard({
@@ -13,7 +21,10 @@ export default function OneSmallCard({
   firstName,
   lastName,
   avatar,
+  path,
 }: OneCardProps) {
+  const router = useRouter();
+
   return (
     <div
       key={id}
@@ -25,6 +36,9 @@ export default function OneSmallCard({
         width={100}
         height={100}
         className="rounded-full object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
+        onClick={() => {
+          router.push(path);
+        }}
       />
       <div className="w-full lg:w-28 xl:w-36">
         <h3 className=" truncate font-semibold text-center text-[15px] sm:text-lg">
