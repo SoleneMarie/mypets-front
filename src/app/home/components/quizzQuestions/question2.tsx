@@ -1,3 +1,11 @@
+/**
+ * Composant `MostCommonSpeciesQuestion`
+ *
+ * Affiche une question sur l’espèce animale la plus représentée dans la base.
+ * Utilise la requête GraphQL `FIND_MOST_COMMON_SPECIES` pour récupérer les données.
+ * Les noms des espèces sont traduits via une API de traduction utilisant mymemory.
+ */
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -9,14 +17,13 @@ type MostCommonSpecies = {
   count: number;
 };
 
-export default function MostCommonSpecies() {
+export default function MostCommonSpeciesQuestion() {
   const [result, setResult] = useState<MostCommonSpecies[] | null>(null);
   const [translatedList, setTranslatedList] = useState<string[]>([]);
   const [loadingTranslations, setLoadingTranslations] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
   const [error, setError] = useState(false);
 
-  // Requête vers l'API Nest pour obtenir les espèces les plus fréquentes
   const fetchMostCommonSpecies = async () => {
     setError(false);
     try {
@@ -30,7 +37,6 @@ export default function MostCommonSpecies() {
     }
   };
 
-  // Traduction des espèces après la récupération
   useEffect(() => {
     if (!result || result.length === 0) return;
 
@@ -52,9 +58,11 @@ export default function MostCommonSpecies() {
         );
 
         setTranslatedList(translated);
+        setShowAnswer(true);
       } catch (err) {
         console.error("Erreur lors de la traduction :", err);
         setTranslatedList(result.map((item) => item.species));
+        setShowAnswer(true);
       } finally {
         setLoadingTranslations(false);
       }
@@ -63,14 +71,12 @@ export default function MostCommonSpecies() {
     translateSpecies();
   }, [result]);
 
-  // Clic sur "Afficher la réponse"
   const handleShowAnswer = () => {
-    setShowAnswer(true);
     fetchMostCommonSpecies();
   };
 
   return (
-    <div className="mb-4">
+    <div className="mb-4 text-sm sm:text-base border-b pb-4 border-[var(--accent)]">
       <p className="font-semibold">
         Quelle espèce est <b>la mieux représentée</b> ?
       </p>
@@ -78,7 +84,7 @@ export default function MostCommonSpecies() {
       {!showAnswer && (
         <button
           onClick={handleShowAnswer}
-          className="cursor-pointer mt-1 px-4 py-2 rounded-md text-sm text-[var(--background)] hover:opacity-80 bg-[var(--highlight)]"
+          className="cursor-pointer mt-2  px-4 py-2 rounded-md text-sm text-[var(--background)] hover:opacity-80 bg-[var(--highlight)]"
         >
           Afficher la réponse
         </button>
@@ -93,7 +99,7 @@ export default function MostCommonSpecies() {
           )}
 
           {!error && result && result.length > 0 && (
-            <p>
+            <p className="text-[var(--answer)] font-medium">
               {result.length === 1 ? (
                 <>
                   L'espèce la mieux représentée est{" "}
@@ -102,7 +108,7 @@ export default function MostCommonSpecies() {
                       ? result[0].species
                       : translatedList[0]}
                   </b>
-                  , avec {result[0].count} individus.
+                  , avec <b>{result[0].count}</b> individus.
                 </>
               ) : (
                 <>
@@ -112,7 +118,7 @@ export default function MostCommonSpecies() {
                       ? result.map((item) => item.species).join(", ")
                       : translatedList.join(", ")}
                   </b>
-                  , avec {result[0].count} individus chacune.
+                  , avec <b>{result[0].count}</b> individus chacune.
                 </>
               )}
             </p>

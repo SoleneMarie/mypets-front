@@ -54,7 +54,7 @@ export default function AnimalCard({ animal }: AnimalCardProps) {
   }
 
   return (
-    <div className="w-76 sm:w-140 mx-auto bg-[var(--secondary)] text-[var(--foreground)] p-4 rounded-lg shadow hover:shadow-lg transition">
+    <div className="w-76 sm:w-140 mx-auto bg-[var(--secondary)] text-[var(--primary)] p-4 rounded-lg shadow hover:shadow-lg transition">
       <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:gap-10 mb-2">
         <div className="flex items-center justify-center gap-4">
           <Image

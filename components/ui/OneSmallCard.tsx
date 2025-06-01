@@ -28,7 +28,7 @@ export default function OneSmallCard({
   return (
     <div
       key={id}
-      className="flex flex-col lg:flex-row items-center gap-2 bg-[var(--secondary)] text-[var(--foreground)] p-4 rounded-lg shadow hover:shadow-lg transition"
+      className="flex flex-col lg:flex-row items-center gap-2 bg-[var(--secondary)] text-[var(--primary)] p-4 rounded-lg shadow hover:shadow-lg transition"
     >
       <Image
         src={avatar}
