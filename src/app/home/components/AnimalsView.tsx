@@ -70,7 +70,7 @@ export default function AnimalsView() {
   if (isLoading) return <Loader />;
   if (error)
     return (
-      <div className="text-[var(--danger)] p-4 text-sm sm:text-normal text-center">
+      <div className="text-[var(--danger)] p-4 text-sm sm:text-normal text-center " >
         {error}
       </div>
     );

@@ -8,7 +8,10 @@ export default function Home() {
   const router = useRouter();
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div
+      className="flex flex-col "
+      style={{ minHeight: "calc(var(--vh, 1vh) * 100)" }}
+    >
       <main className="flex flex-col flex-1 items-center justify-center">
         <h1 className="logo text-7xl sm:text-8xl text-[var(--danger)] mb-8">
           My Pets
