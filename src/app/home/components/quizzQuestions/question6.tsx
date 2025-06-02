@@ -64,8 +64,8 @@ export default function HeaviestGroupQuestion() {
   return (
     <div className="mb-4 text-sm sm:text-base">
       <p className="font-semibold">
-        Qui possède <b>le groupe d'animaux le plus lourd</b> ? Quel est le poids
-        total de ce groupe ?
+        Qui possède <b>le groupe d&rsquo;animaux le plus lourd</b> ? Quel est le
+        poids total de ce groupe ?
       </p>
 
       {!showAnswer && (

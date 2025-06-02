@@ -18,7 +18,7 @@ type Animal = {
 
 type PersonCardProps = {
   person: {
-    id: string;
+    id: number;
     email: string;
     firstName: string;
     lastName: string;
@@ -67,7 +67,7 @@ export default function PersonCard({ person, avatar }: PersonCardProps) {
         </h2>
         {person.animals.length === 0 ? (
           <p className="text-sm font-medium text-[var(--danger)]">
-            {person.firstName} n'a aucun animal pour le moment.
+            {person.firstName} n&rsquo;a aucun animal pour le moment.
           </p>
         ) : (
           <ul className="grid grid-cols-2 sm:grid-cols-3 gap-4 mt-2">

@@ -57,7 +57,7 @@ export default function PersonPage() {
           }
         );
         setPerson(data.findPersonWithAnimals);
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error("Erreur lors du chargement de la personne :", error);
         setError("Impossible de charger cette personne.");
       } finally {

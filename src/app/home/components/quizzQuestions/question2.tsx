@@ -67,7 +67,7 @@ export default function MostCommonSpeciesQuestion() {
             <p className="text-[var(--answer)] font-medium">
               {result.length === 1 ? (
                 <>
-                  L'espèce la mieux représentée est{" "}
+                  L&rsquo;espèce la mieux représentée est{" "}
                   <b>{result[0].specieTranslated}</b>, avec{" "}
                   <b>{result[0].count}</b> individus.
                 </>

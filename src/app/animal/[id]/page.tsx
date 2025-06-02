@@ -61,7 +61,7 @@ export default function AnimalPage() {
           }
         );
         setAnimal(data.findAnimalWithOwner);
-      } catch (error: any) {
+      } catch (error: unknown) {
         console.error("Erreur lors du chargement de l'animal :", error);
         setError("Impossible de charger cet animal.");
       } finally {

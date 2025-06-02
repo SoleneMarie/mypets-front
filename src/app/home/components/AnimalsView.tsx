@@ -84,7 +84,7 @@ export default function AnimalsView() {
         <h2 className="text-xl sm:text-2xl font-semibold">de My Pets 🐾</h2>
       </div>
       <p className="pb-4 font-medium text-sm sm:text-base mt-2 opacity-90">
-        Cliquez sur un animal pour avoir plus d'informations
+        Cliquez sur un animal pour avoir plus d&rsquo;informations
       </p>
       <div className="md:flex items-center justify-between">
         <CustomSelect

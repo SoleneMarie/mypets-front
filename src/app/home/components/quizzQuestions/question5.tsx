@@ -75,8 +75,8 @@ export default function HeaviestAnimalQuestion() {
   return (
     <div className="mb-4 text-sm sm:text-base border-b pb-4 border-[var(--accent)]">
       <p className="font-semibold">
-        Qui possède <b>l'animal le plus lourd</b> ? Comment s'appelle cet animal
-        et quel est son poids ?
+        Qui possède <b>l&rsquo;animal le plus lourd</b> ? Comment
+        s&rsquo;appelle cet animal et quel est son poids ?
       </p>
 
       {!showAnswer && (
