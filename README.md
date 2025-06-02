@@ -1,37 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🐾 MyPets - Frontend
 
-## Getting Started
+Application front-end développée avec **Next.js 14**, **TypeScript**, **Tailwind CSS** et **GraphQL**, pour la gestion d'animaux et de leurs propriétaires.
 
-First, run the development server:
+---
+
+## Technologies principales
+
+- **Next.js (App Router)**
+- **TypeScript**
+- **Tailwind CSS**
+- **GraphQL**
+
+---
+
+## Lancer le projet en local
+
+### 1. Cloner le repo
+
+```bash
+git clone https://github.com/SoleneMarie/mypets-front.git
+cd mypets-front
+```
+
+### 2. Installer les dépendances
+
+```bash
+npm install
+```
+
+### 3. Configurer les variables d'environnement
+
+Créer un fichier .env.local à la racine :
+
+```
+NEXT_PUBLIC_GRAPHQL_API_URL=http://monPortBackend/graphql
+```
+
+(A adapter en fonction du port de ton backend Nest.js)
+
+### 4. Lancer le projet
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Fonctionnalités principales
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 🔍 Listes paginées des animaux et des propriétaires
+- 👤 Affichage détaillé d’un animal avec son propriétaire, d'un propriétaire avec ses animaux
+- 📊 Quizz : espèce la plus représentée, animal le plus lourd, etc.
+- ⚙️ Composants réutilisables : Header, Footer, Loader, etc.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Structure du projet
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+/components
+  /ui        # Composants génériques (Header, Footer, Loader…)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+/public        # Ressources statiques
 
-## Deploy on Vercel
+/src
+    /app
+        /home       # Page d’accueil
+        /animal/[id]  # Détail d’un animal
+        /person/[id]  # Détail d’un propriétaire
+        global.css # Styles globaux
+        layout.tsx   # Layout global de l’app
+        not-found.tsx # Page 404 personnalisée
+        page.tsx    # Page d’entrée
+    /lib
+        /graphql    # Requêtes GraphQL
+        /utils     # Fonctions utilitaires
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+.env.example   # Exemple de configuration
+.env.local     # Variables d’environnement locales
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# mypets-front
+---
+
+## 🔗 Backend associé
+
+Cette application front-end communique avec une API Nest.js (GraphQL) disponible ici :
+
+👉 [Dépôt GitHub – mypets-api](https://github.com/SoleneMarie/mypets-api)
+
+Le backend gère :
+
+- La base de données (MySQL)
+- Les entités `Animal` et `Person`
+- Les resolvers GraphQL
+- Les traductions via My Memory
+- Les paginations
+
+## 👩‍💻 Auteur
+
+Projet réalisé dans le cadre d’un exercice technique.  
+Codé avec ❤️ par **Solène**.
