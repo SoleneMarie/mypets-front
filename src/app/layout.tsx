@@ -27,6 +27,7 @@ const knewave = Knewave({
 export const metadata: Metadata = {
   title: "My Pets",
   description: "Une app au poil",
+  icons: "/paws.png",
 };
 
 export default function RootLayout({
