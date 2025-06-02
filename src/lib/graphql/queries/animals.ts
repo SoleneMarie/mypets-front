@@ -39,10 +39,13 @@ export const GET_ANIMAL_WITH_OWNER = gql`
       id
       name
       dateOfBirth
-      species
-      breed
-      color
       weight
+      color
+      colorTranslated
+      breed
+      breedTranslated
+      species
+      specieTranslated
       owner {
         id
         firstName

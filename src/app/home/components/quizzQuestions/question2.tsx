@@ -3,24 +3,22 @@
  *
  * Affiche une question sur l’espèce animale la plus représentée dans la base.
  * Utilise la requête GraphQL `FIND_MOST_COMMON_SPECIES` pour récupérer les données.
- * Les noms des espèces sont traduits via une API de traduction utilisant mymemory.
  */
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { graphQLClient } from "@/lib/graphql/client";
 import { FIND_MOST_COMMON_SPECIES } from "@/lib/graphql/queries/quizz";
 
 type MostCommonSpecies = {
   species: string;
+  specieTranslated: string;
   count: number;
 };
 
 export default function MostCommonSpeciesQuestion() {
   const [result, setResult] = useState<MostCommonSpecies[] | null>(null);
-  const [translatedList, setTranslatedList] = useState<string[]>([]);
-  const [loadingTranslations, setLoadingTranslations] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
   const [error, setError] = useState(false);
 
@@ -37,41 +35,8 @@ export default function MostCommonSpeciesQuestion() {
     }
   };
 
-  useEffect(() => {
-    if (!result || result.length === 0) return;
-
-    const translateSpecies = async () => {
-      setLoadingTranslations(true);
-      try {
-        const responses = await Promise.all(
-          result.map((item) =>
-            fetch("/api/translate", {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ text: item.species }),
-            }).then((res) => res.json())
-          )
-        );
-
-        const translated = responses.map(
-          (res, index) => res?.translated || result[index].species
-        );
-
-        setTranslatedList(translated);
-        setShowAnswer(true);
-      } catch (err) {
-        console.error("Erreur lors de la traduction :", err);
-        setTranslatedList(result.map((item) => item.species));
-        setShowAnswer(true);
-      } finally {
-        setLoadingTranslations(false);
-      }
-    };
-
-    translateSpecies();
-  }, [result]);
-
   const handleShowAnswer = () => {
+    setShowAnswer(true);
     fetchMostCommonSpecies();
   };
 
@@ -103,20 +68,14 @@ export default function MostCommonSpeciesQuestion() {
               {result.length === 1 ? (
                 <>
                   L'espèce la mieux représentée est{" "}
-                  <b>
-                    {loadingTranslations
-                      ? result[0].species
-                      : translatedList[0]}
-                  </b>
-                  , avec <b>{result[0].count}</b> individus.
+                  <b>{result[0].specieTranslated}</b>, avec{" "}
+                  <b>{result[0].count}</b> individus.
                 </>
               ) : (
                 <>
                   Les espèces les mieux représentées sont{" "}
                   <b>
-                    {loadingTranslations
-                      ? result.map((item) => item.species).join(", ")
-                      : translatedList.join(", ")}
+                    {result.map((item) => item.specieTranslated).join(", ")}
                   </b>
                   , avec <b>{result[0].count}</b> individus chacune.
                 </>

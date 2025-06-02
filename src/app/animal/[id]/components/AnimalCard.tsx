@@ -8,11 +8,9 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useTranslation } from "@/lib/hooks/useTranslation";
 import { getSpeciePhoto } from "@/lib/utils";
 import { formatWeight } from "@/lib/utils";
 import { calculateAge } from "@/lib/utils";
-import Loader from "../../../../../components/ui/loader";
 import { getRandomAvatar } from "@/lib/utils";
 
 type Person = {
@@ -27,8 +25,11 @@ type AnimalCardProps = {
     name: string;
     dateOfBirth: string;
     species: string;
+    specieTranslated: string;
     breed: string;
+    breedTranslated: string;
     color: string;
+    colorTranslated: string;
     weight: number;
     owner: Person;
   };
@@ -36,22 +37,7 @@ type AnimalCardProps = {
 
 export default function AnimalCard({ animal }: AnimalCardProps) {
   const router = useRouter();
-
-  const { translated: speciesFr, loading: loadingSpecies } = useTranslation(
-    animal.species
-  );
-  const { translated: breedFr, loading: loadingBreed } = useTranslation(
-    animal.breed
-  );
-  const { translated: colorFr, loading: loadingColor } = useTranslation(
-    animal.color
-  );
-  const isLoading = loadingSpecies || loadingBreed || loadingColor;
   const ownerAvatar = getRandomAvatar();
-
-  if (isLoading) {
-    return <Loader />;
-  }
 
   return (
     <div className="w-76 sm:w-140 mx-auto bg-[var(--secondary)] text-[var(--primary)] p-4 rounded-lg shadow hover:shadow-lg transition">
@@ -71,12 +57,11 @@ export default function AnimalCard({ animal }: AnimalCardProps) {
           </p>
           <p className="text-sm mb-1">
             <span className="font-bold">Espèce :</span>{" "}
-            {speciesFr || animal.species}
+            {animal.specieTranslated}
           </p>
           {animal.breed && (
             <p className="text-sm mb-1">
-              <span className="font-bold">Race :</span>{" "}
-              {breedFr || animal.breed}
+              <span className="font-bold">Race :</span> {animal.breedTranslated}
             </p>
           )}
           <p className="text-sm mb-1">
@@ -88,8 +73,7 @@ export default function AnimalCard({ animal }: AnimalCardProps) {
             {calculateAge(animal.dateOfBirth)}
           </p>
           <p className="text-sm mb-1">
-            <span className="font-bold">Couleur:</span>{" "}
-            {colorFr.toLowerCase() || animal.color}
+            <span className="font-bold">Couleur:</span> {animal.colorTranslated}
           </p>
         </div>
       </div>

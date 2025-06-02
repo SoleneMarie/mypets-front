@@ -20,7 +20,7 @@ export const FIND_OLDEST_ANIMALS = gql`
 /**
  * Requête `FindMostCommonSpecies`
  *
- * Récupère l’espèce la plus représentée dans la base de données.
+ * Récupère l’espèce la plus représentée dans la base de données et sa traduction française
  * Peut retourner plusieurs espèces en cas d’égalité.
  * Retourne pour chaque espèce son `nom` et le `nombre d’individus` associés.
  */
@@ -28,6 +28,7 @@ export const FIND_MOST_COMMON_SPECIES = gql`
   query FindMostCommonSpecies {
     findMostCommonSpecies {
       species
+      specieTranslated
       count
     }
   }

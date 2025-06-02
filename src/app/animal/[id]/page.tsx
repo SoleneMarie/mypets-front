@@ -20,7 +20,14 @@ import Footer from "../../../../components/ui/footer";
 type AnimalWithOwner = {
   id: number;
   name: string;
+  dateOfBirth: string;
   species: string;
+  specieTranslated: string;
+  color: string;
+  colorTranslated: string;
+  breed: string;
+  breedTranslated: string;
+  weight: number;
   owner: {
     id: number;
     firstName: string;
