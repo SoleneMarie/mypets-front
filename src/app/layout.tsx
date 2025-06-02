@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Raleway, Knewave } from "next/font/google";
+import ViewportHeightFix from "../../components/utils/ViewportHeightFix";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -40,6 +41,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${raleway.variable} ${knewave.variable} antialiased`}
       >
+        {/* Fixe le problème de 100vh sur mobile */}
+        <ViewportHeightFix />
         {children}
       </body>
     </html>

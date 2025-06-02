@@ -69,7 +69,10 @@ export default function PersonPage() {
   }, [id]);
 
   return (
-    <main className="px-4 min-h-screen max-w-[1100px] w-full flex flex-col justify-between mx-auto bg-[var(--background)] text-[var(--foreground)]">
+    <main
+      style={{ minHeight: "calc(var(--vh, 1vh) * 100)" }}
+      className="px-4 max-w-[1100px] w-full flex flex-col justify-between mx-auto bg-[var(--background)] text-[var(--foreground)]"
+    >
       <Header partial={true} />
 
       {loading ? (
